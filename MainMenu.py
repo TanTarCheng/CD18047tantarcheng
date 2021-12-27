@@ -1,7 +1,6 @@
 import pygame
 import pygame_menu
 import AssistedCervicalSpineRetraction as ACSR1
-import Exercise3 as E3
 
 pygame.init()
 # Constants and global variables
@@ -16,22 +15,6 @@ hardCount = 15
 backgroundImg = 'ExercisePic/upper-back-pain.png'
 
 #Event handeling
-def set_Module(module, value):
-    '''
-    for event in pygame.event.get(): \== easy
-        if (event.type == pygame.QUIT):
-            running == False
-        if (event.type == pygame.KEYDOWN):
-            if (event.key == pygame.K_a):
-                print("you pressed the a key")
-    for event in pygame.event.get(): \ == hard
-        if (event.type == pygame.QUIT):
-            running == False
-        if (event.type == pygame.KEYDOWN):
-            if (event.key == pygame.K_a):
-                print("you pressed the a key")
-    '''
-    pass
 
 def set_difficulty(value, difficulty, totalCount):
     ACSR1.set_totalCount(totalCount)
@@ -43,12 +26,32 @@ def set_difficulty(value, difficulty, totalCount):
     E5.set_totalCount(totalCount)
     E6.set_totalCount(totalCount)
     E7.set_totalCount(totalCount)
+    这边settle
     '''
     pass
 
+def set_Module(module, value):
+    '''
+    if set_Module == moode1 and set_difficulty == easy
+    easy count
+    if get set_Module = moode1 & set_difficulty == hard
+    hard count
+    if get set_Module = moode2 & set_difficulty == easy
+    easy count
+    if get set_Module = moode2 & set_difficulty == hard
+    hard count
+    '''
+    pass
+
+
 def start_the_game():
     # Do the job here !
-    '''run set moudle'''
+    '''
+    if get moode1
+    then run exercise 1,2,3
+    if get mode2
+    then run exercise 1,2,3,4,5,6
+    '''
 
     pass
 
