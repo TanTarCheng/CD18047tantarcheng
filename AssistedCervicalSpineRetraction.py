@@ -13,6 +13,7 @@ count = 0
 dir = 0
 totalCount = 5
 
+
 def set_totalCount(difficulty):
     global totalCount
     totalCount = difficulty
