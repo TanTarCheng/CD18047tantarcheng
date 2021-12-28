@@ -25,34 +25,47 @@ def set_difficulty(value, difficulty, totalCount):
     E5.set_totalCount(totalCount)
     E5.set_totalCount(totalCount)
     E6.set_totalCount(totalCount)
-    E7.set_totalCount(totalCount)
     这边settle
     '''
     pass
 
 def set_Module(module, value):
-    '''
-    if set_Module == moode1 and set_difficulty == easy
-    easy count
-    if get set_Module = moode1 & set_difficulty == hard
-    hard count
-    if get set_Module = moode2 & set_difficulty == easy
-    easy count
-    if get set_Module = moode2 & set_difficulty == hard
-    hard count
-    '''
+
+    if set_Module == 'Module1' and set_difficulty == 1:
+        easyCount
+    elif set_Module == 'Module1' and set_difficulty == 2:
+        hardCount
+    elif set_Module == 'Module2' and set_difficulty == 1:
+        easyCount
+    else:
+        hardCount
     pass
 
 
 def start_the_game():
     # Do the job here !
     '''
-    if get moode1
-    then run exercise 1,2,3
-    if get mode2
-    then run exercise 1,2,3,4,5,6
-    '''
+    if set_Module == 'Module1'
+    #then run exercise 1,2,3
+        ACSR1()
+        ACSR2()
+        ACSR3()
+    elif set_Module == mode2
+    #then run exercise 1,2,3,4,5,6
+        ACSR1()
+        ACSR2()
+        ACSR3()
+        ACSR4()
+        ACSR5()
+        ACSR6()
 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit(0)
+        elif event.type == KEYDOWN:
+            if event.key == K_ESCAPE or event.key == K_q:
+                sys.exit(0)
+    '''
     pass
 
 # Create menus: Main menu
