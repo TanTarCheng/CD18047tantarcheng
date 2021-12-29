@@ -59,12 +59,7 @@ def start_the_game():
         ACSR5()
         ACSR6()
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit(0)
-        elif event.type == KEYDOWN:
-            if event.key == K_ESCAPE or event.key == K_q:
-                sys.exit(0)
+
     '''
     pass
 

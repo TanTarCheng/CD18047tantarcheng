@@ -4,7 +4,7 @@ import numpy as np
 import PoseModule as pm
 import time
 from datetime import datetime
-
+from threading import Thread
 
 #up &down head
 cap= cv2.VideoCapture(0)
@@ -12,15 +12,17 @@ detector = pm.poseDetector()
 count = 0
 dir = 0
 totalCount = 5
+diff = 0
 
 
-def countdown(timer, img):
-    duration = timer
+def countdown():
+    global diff
+    duration = 50
     start_time = datetime.now()
     diff = (datetime.now() - start_time).seconds  # converting into seconds
     while (diff <= duration):
-        cv2.putText(img, (f"{diff}/50sec"), (50, 680), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2,cv2.LINE_AA)  # adding timer text
         diff = (datetime.now() - start_time).seconds
+        #print(str(diff))
 
 def set_totalCount(difficulty):
     global totalCount
@@ -58,6 +60,7 @@ def calculate_post(img):
 
 
 def display_data(img, color, per, bar):
+
     # Draw bar
     cv2.rectangle(img, (1190, 100), (1178, 650), color, 3)
     cv2.rectangle(img, (1190, int(bar)), (1178, 650), color, cv2.FILLED)
@@ -65,10 +68,12 @@ def display_data(img, color, per, bar):
 
     # Draw count
     #cv2.rectangle(img, (0, 550), (300, 720), (0, 255, 0), cv2.FILLED)
-    cv2.putText(img, f'{str(int(count))} Repitition', (30, 680), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 5)
+    cv2.putText(img, f'{str(int(count))} Repitition', (26, 680), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 5)
     # show the total number
-    cv2.putText(img, f'{int(totalCount)} left', (20, 620), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 5)
+    cv2.putText(img, f'{int(totalCount)} left', (26, 620), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 5)
 
+    #display timer text
+    cv2.putText(img, (f"{diff}/50sec"), (26, 560), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 4, cv2.LINE_AA)
 
 def main():
 
@@ -78,12 +83,12 @@ def main():
         img = cv2.flip(img, 1)
         img = detector.findPose(img, False)
         calculate_post(img)
-
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
             time.sleep(2)
             break
+            
 
         #ExercisePicture
         imgPic = cv2.imread('ExercisePic/AssistedCervicalSpineRetraction.JPG', -1)
@@ -102,4 +107,8 @@ def main():
             break
 
 if __name__ == "__main__":
-    main()
+    #main()
+    t1 = Thread(target=countdown)
+    t2 = Thread(target=main)
+    t1.start()  # Calls first function
+    t2.start()  # Calls second function to run at same time
