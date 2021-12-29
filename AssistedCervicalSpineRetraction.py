@@ -3,7 +3,7 @@ import cv2.cv2
 import numpy as np
 import PoseModule as pm
 import time
-import pygame
+from datetime import datetime
 
 
 #up &down head
@@ -17,6 +17,7 @@ totalCount = 5
 def set_totalCount(difficulty):
     global totalCount
     totalCount = difficulty
+
 
 def calculate_post(img):
     global count
@@ -70,20 +71,30 @@ def main():
         img = detector.findPose(img, False)
         calculate_post(img)
 
+
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
             time.sleep(2)
             break
 
+        #ExercisePicture
         imgPic = cv2.imread('ExercisePic/AssistedCervicalSpineRetraction.JPG', -1)
+        #ExerciseName
         cv2.putText(img, f'Assisted Cervical', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         cv2.putText(img, f'SpineRetraction', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        #mergeImage
         added_image = cv2.addWeighted(img[150:250, 150:250, :], 0.2, imgPic[0:100, 0:100, :], 1 - 0.4, 0)
         img[150:250, 150:250] = added_image
         cv2.imshow('AssistedCervicalSpineRetraction', img)
-        cv2.waitKey(1)
 
+
+        k = cv2.waitKey(1)
+        if k & 0xFF == ord("r"):  # reset the timer
+            break
+        if k & 0xFF == ord("q"):  # quit all
+            qu = 1
+            break
 
 if __name__ == "__main__":
     main()
