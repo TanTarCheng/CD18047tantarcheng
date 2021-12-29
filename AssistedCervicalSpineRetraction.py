@@ -14,6 +14,14 @@ dir = 0
 totalCount = 5
 
 
+def countdown(timer, img):
+    duration = timer
+    start_time = datetime.now()
+    diff = (datetime.now() - start_time).seconds  # converting into seconds
+    while (diff <= duration):
+        cv2.putText(img, (f"{diff}/50sec"), (50, 680), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2,cv2.LINE_AA)  # adding timer text
+        diff = (datetime.now() - start_time).seconds
+
 def set_totalCount(difficulty):
     global totalCount
     totalCount = difficulty
@@ -53,7 +61,7 @@ def display_data(img, color, per, bar):
     # Draw bar
     cv2.rectangle(img, (1190, 100), (1178, 650), color, 3)
     cv2.rectangle(img, (1190, int(bar)), (1178, 650), color, cv2.FILLED)
-    cv2.putText(img, f'{int(per)}%', (1170, 75), cv2.FONT_HERSHEY_PLAIN, 3, color, 4)
+    cv2.putText(img, f'{int(per)}%', (1150, 75), cv2.FONT_HERSHEY_PLAIN, 3, color, 4)
 
     # Draw count
     #cv2.rectangle(img, (0, 550), (300, 720), (0, 255, 0), cv2.FILLED)
@@ -70,7 +78,6 @@ def main():
         img = cv2.flip(img, 1)
         img = detector.findPose(img, False)
         calculate_post(img)
-
 
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
@@ -90,8 +97,6 @@ def main():
 
 
         k = cv2.waitKey(1)
-        if k & 0xFF == ord("r"):  # reset the timer
-            break
         if k & 0xFF == ord("q"):  # quit all
             qu = 1
             break

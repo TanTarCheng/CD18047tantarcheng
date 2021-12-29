@@ -31,7 +31,7 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-'''         
+''' from datetime import datetime        
     duration = 20
     start_time = datetime.now()
     diff = (datetime.now() - start_time).seconds  # converting into seconds
