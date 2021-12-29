@@ -88,7 +88,7 @@ def main():
         if totalCount == 0:
             time.sleep(2)
             break
-            
+
 
         #ExercisePicture
         imgPic = cv2.imread('ExercisePic/AssistedCervicalSpineRetraction.JPG', -1)
