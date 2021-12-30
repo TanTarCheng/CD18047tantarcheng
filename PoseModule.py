@@ -36,7 +36,7 @@ class poseDetector():
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 self.lmlist.append([id, cx, cy])
                 if draw:
-                    cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
+                    cv2.circle(img, (cx, cy), 3, (255, 0, 0), cv2.FILLED)
         return self.lmlist
 
     def findAngle(self, img, p1, p2, p3, draw=True):
