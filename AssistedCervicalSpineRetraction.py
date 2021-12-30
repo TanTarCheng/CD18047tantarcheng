@@ -23,6 +23,8 @@ def countdown():
     while (diff <= duration):
         diff = (datetime.now() - start_time).seconds
         #print(str(diff))
+        if diff == 50:
+            break
 
 def set_totalCount(difficulty):
     global totalCount
@@ -86,9 +88,13 @@ def main():
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
-            time.sleep(2)
+            time.sleep(1)
             break
-
+        if diff == 49:
+            cv2.putText(img, "Time up, u fail !!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
+        if diff == 50:
+            time.sleep(1)
+            break
 
         #ExercisePicture
         imgPic = cv2.imread('ExercisePic/AssistedCervicalSpineRetraction.JPG', -1)
@@ -103,7 +109,6 @@ def main():
 
         k = cv2.waitKey(1)
         if k & 0xFF == ord("q"):  # quit all
-            qu = 1
             break
 
 if __name__ == "__main__":
