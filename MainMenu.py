@@ -69,7 +69,7 @@ mytheme.background_color = myimage
 
 
 menu = pygame_menu.Menu('Backpain', 1260, 960, theme=mytheme)
-menu.add.text_input('Name :', default='Player')
+
 menu.add.selector('Difficulty :', [('Easy', 1, easyCount), ('Hard', 2, hardCount)], onchange=set_difficulty)
 
 menu.add.selector("Module:", [('Module1', 1), ('Module2', 2)], onchange=set_Module)
