@@ -97,7 +97,7 @@ def main():
             break
 
         #ExercisePicture
-        imgPic = cv2.imread('ExercisePic/6SeatedLateralTrunkStreach.jpg', -1)
+        imgPic = cv2.imread('ExercisePic/num10PosteriorScaleneStretch.jpg', -1)
         #ExerciseName
         cv2.putText(img, f'Seated Lateral', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         cv2.putText(img, f'Trunk Stretch', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
