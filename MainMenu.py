@@ -13,8 +13,8 @@ WIDTH, HEIGHT = 1260, 960
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 #setLv_dificulty
-easyCount = 10
-hardCount = 15
+easyCount = 6
+hardCount = 12
 
 # Load image
 backgroundImg = 'ExercisePic/upper-back-pain.png'
@@ -48,16 +48,17 @@ def start_the_game():
     if set_Module == 'Module1':
     #then run exercise 1,2,3
         E1()
-        E2()
-        E3()
+        '''E2()
+        E3()'''
     elif set_Module == 'Module2':
     #then run exercise 1,2,3,4,5,6
-        E1()
+        '''E1()
         E2()
+        '''
         E3()
-        E4()
-        E5()
-        E6()
+        #E4()
+        #E5()
+        #E6()
     pass
 
 # Create menus: Main menu
