@@ -11,7 +11,7 @@ cap= cv2.VideoCapture(0)
 detector = pm.poseDetector()
 count = 0
 dir = 0
-totalCount = 5
+totalCount = 6
 diff = 0
 
 

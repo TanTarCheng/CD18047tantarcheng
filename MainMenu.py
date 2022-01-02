@@ -28,38 +28,34 @@ def set_difficulty(value, difficulty, totalCount):
     E4.set_totalCount(totalCount)
     E5.set_totalCount(totalCount)
     E6.set_totalCount(totalCount)
-    pass
 
 def set_Module(module, value):
-
     if set_Module == 'Module1' and set_difficulty == 1:
         easyCount
+
     elif set_Module == 'Module1' and set_difficulty == 2:
         hardCount
     elif set_Module == 'Module2' and set_difficulty == 1:
         easyCount
     else:
         hardCount
-    pass
+
 
 
 def start_the_game():
+    E1.runExercise()
 
-    if set_Module == 'Module1':
-    #then run exercise 1,2,3
+''' if set_Module == 'Module1':
         E1()
-        '''E2()
-        E3()'''
-    elif set_Module == 'Module2':
-    #then run exercise 1,2,3,4,5,6
-        '''E1()
         E2()
-        '''
+        E3()
+    elif set_Module == 'Module2':
+        E1()
+        E2()
         E3()
         #E4()
         #E5()
-        #E6()
-    pass
+        #E6()'''
 
 # Create menus: Main menu
 mytheme = pygame_menu.themes.THEME_BLUE.copy()
