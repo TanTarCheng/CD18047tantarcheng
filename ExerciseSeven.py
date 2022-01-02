@@ -38,7 +38,7 @@ def calculate_post(img):
     lmlist = detector.findPosition(img, False)
 
     if len(lmlist) != 0:
-        angle = detector.findAngle(img, 11, 0, 12)
+        angle = detector.findAngle(img, 11, 13, 15)
         # range (210 -310) convert to 0 - 100 percent
         per = np.interp(angle, (90, 100), (0, 100))
         # 650= min bar , 100 = max bar opencv is oppesite de
