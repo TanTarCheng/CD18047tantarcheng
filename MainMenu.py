@@ -1,6 +1,11 @@
 import pygame
 import pygame_menu
-import ExampleAssistedCervicalSpineRetraction as ACSR1
+import ExerciseTwo as E1
+import ExerciseThree as E2
+import ExerciseFour as E3
+import ExerciseFFive as E4
+import ExerciseSix as E5
+import ExerciseSeven as E6
 
 pygame.init()
 # Constants and global variables
@@ -17,16 +22,12 @@ backgroundImg = 'ExercisePic/upper-back-pain.png'
 #Event handeling
 
 def set_difficulty(value, difficulty, totalCount):
-    ACSR1.set_totalCount(totalCount)
-    ''' 
+    E1.set_totalCount(totalCount)
     E2.set_totalCount(totalCount)
     E3.set_totalCount(totalCount)
     E4.set_totalCount(totalCount)
     E5.set_totalCount(totalCount)
-    E5.set_totalCount(totalCount)
     E6.set_totalCount(totalCount)
-    这边settle
-    '''
     pass
 
 def set_Module(module, value):
@@ -43,24 +44,20 @@ def set_Module(module, value):
 
 
 def start_the_game():
-    # Do the job here !
-    '''
-    if set_Module == 'Module1'
+
+    if set_Module == 'Module1':
     #then run exercise 1,2,3
-        ACSR1()
-        ACSR2()
-        ACSR3()
-    elif set_Module == mode2
+        E1()
+        E2()
+        E3()
+    elif set_Module == 'Module2':
     #then run exercise 1,2,3,4,5,6
-        ACSR1()
-        ACSR2()
-        ACSR3()
-        ACSR4()
-        ACSR5()
-        ACSR6()
-
-
-    '''
+        E1()
+        E2()
+        E3()
+        E4()
+        E5()
+        E6()
     pass
 
 # Create menus: Main menu
