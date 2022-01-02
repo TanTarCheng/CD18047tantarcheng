@@ -99,12 +99,12 @@ def main():
         #ExercisePicture
         imgPic = cv2.imread('ExercisePic/4NexkExtension.jpg', -1)
         #ExerciseName
-        cv2.putText(img, f'CervicalSpine', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
-        cv2.putText(img, f'SpineLateralFlexion', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'Neck', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'NexkExtension', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         #mergeImage
         added_image = cv2.addWeighted(img[150:250, 150:250, :], 0.2, imgPic[0:100, 0:100, :], 1 - 0.4, 0)
         img[150:250, 150:250] = added_image
-        cv2.imshow('CervicalSpineLateralFlexion', img)
+        cv2.imshow('NeckExtension', img)
 
 
         k = cv2.waitKey(1)

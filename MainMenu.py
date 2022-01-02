@@ -1,6 +1,6 @@
 import pygame
 import pygame_menu
-import AssistedCervicalSpineRetraction as ACSR1
+import ExampleAssistedCervicalSpineRetraction as ACSR1
 
 pygame.init()
 # Constants and global variables
