@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 from threading import Thread
 
-#up &down head
+
 cap= cv2.VideoCapture(0)
 detector = pm.poseDetector()
 count = 0
@@ -25,6 +25,8 @@ def countdown():
         #print(str(diff))
         if diff == 50:
             break
+        if totalCount == 0:
+            break
 
 def set_totalCount(difficulty):
     global totalCount
@@ -38,11 +40,11 @@ def calculate_post(img):
     lmlist = detector.findPosition(img, False)
 
     if len(lmlist) != 0:
-        angle = detector.findAngle(img, 11, 0, 12)
+        angle = detector.findAngle(img, 16, 7, 12)
         # range (210 -310) convert to 0 - 100 percent
-        per = np.interp(angle, (90, 100), (0, 100))
+        per = np.interp(angle, (270, 288), (0, 100))
         # 650= min bar , 100 = max bar opencv is oppesite de
-        bar = np.interp(angle, (90, 100), (650, 100))
+        bar = np.interp(angle, (270, 288), (650, 100))
 
         # check for the curls
         color = (255, 50, 0)
