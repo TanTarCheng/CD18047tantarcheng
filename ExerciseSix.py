@@ -13,17 +13,17 @@ count = 0
 dir = 0
 totalCount = 6
 diff = 0
-
+exercise_complete = False
 
 def countdown():
     global diff
     duration = 50
     start_time = datetime.now()
     diff = (datetime.now() - start_time).seconds  # converting into seconds
-    while (diff <= duration):
+    while (diff <= duration) and (not exercise_complete):
         diff = (datetime.now() - start_time).seconds
         #print(str(diff))
-        if diff == 50:
+        if diff >= 50:
             break
 
 def set_totalCount(difficulty):
@@ -38,11 +38,11 @@ def calculate_post(img):
     lmlist = detector.findPosition(img, False)
 
     if len(lmlist) != 0:
-        angle = detector.findAngle(img, 11, 0, 12)
+        angle = detector.findAngle(img, 11, 13, 15)
         # range (210 -310) convert to 0 - 100 percent
-        per = np.interp(angle, (85, 90), (0, 100))
+        per = np.interp(angle, (90, 100), (0, 100))
         # 650= min bar , 100 = max bar opencv is oppesite de
-        bar = np.interp(angle, (85, 90), (650, 100))
+        bar = np.interp(angle, (90, 100), (650, 100))
 
         # check for the curls
         color = (255, 50, 0)
@@ -85,9 +85,12 @@ def main():
         img = cv2.flip(img, 1)
         img = detector.findPose(img, False)
         calculate_post(img)
+        global exercise_complete
+        # each time count 1
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
+            exercise_complete = True
             time.sleep(1)
             break
         if diff == 49:
@@ -97,14 +100,14 @@ def main():
             break
 
         #ExercisePicture
-        imgPic = cv2.imread('ExercisePic/num9PosteriorScaleneStretch.jpg', -1)
+        imgPic = cv2.imread('ExercisePic/num10PosteriorScaleneStretch.jpg', -1)
         #ExerciseName
-        cv2.putText(img, f'PosteriorScaleneh', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
-        cv2.putText(img, f'Stretch', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'Seated Lateral', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'Trunk Stretch', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         #mergeImage
         added_image = cv2.addWeighted(img[150:250, 150:250, :], 0.2, imgPic[0:100, 0:100, :], 1 - 0.4, 0)
         img[150:250, 150:250] = added_image
-        cv2.imshow('PosteriorScaleneStretch', img)
+        cv2.imshow('SeatedLateralTrunkStretch', img)
 
 
         k = cv2.waitKey(1)

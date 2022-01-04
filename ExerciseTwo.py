@@ -7,7 +7,7 @@ from datetime import datetime
 from threading import Thread
 import ExerciseThree as E3
 
-#up &down head
+
 cap= cv2.VideoCapture(0)
 detector = pm.poseDetector()
 count = 0
@@ -15,7 +15,6 @@ dir = 0
 totalCount = 6
 diff = 0
 exercise_complete = False
-
 
 def countdown():
     global diff
@@ -27,8 +26,6 @@ def countdown():
         #print(str(diff))
         if diff >= 50:
             break
-
-
 
 def onSuccessExercise():
     #get next Exercise reference/ direct import direct
@@ -46,11 +43,11 @@ def calculate_post(img):
     lmlist = detector.findPosition(img, False)
 
     if len(lmlist) != 0:
-        angle = detector.findAngle(img, 14, 0, 13)
+        angle = detector.findAngle(img, 16, 7, 12)
         # range (210 -310) convert to 0 - 100 percent
-        per = np.interp(angle, (240, 250), (0, 100))
+        per = np.interp(angle, (270, 288), (0, 100))
         # 650= min bar , 100 = max bar opencv is oppesite de
-        bar = np.interp(angle, (240, 250), (650, 100))
+        bar = np.interp(angle, (270, 288), (650, 100))
 
         # check for the curls
         color = (255, 50, 0)
@@ -86,7 +83,6 @@ def display_data(img, color, per, bar):
     cv2.putText(img, (f"{diff}/50sec"), (26, 560), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 4, cv2.LINE_AA)
 
 def main():
-
     while True:
         success, img = cap.read()
         img = cv2.resize(img, (1280, 720))
@@ -95,7 +91,7 @@ def main():
         calculate_post(img)
 
         global exercise_complete
-        #each time count 1
+        # each time count 1
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
@@ -103,7 +99,6 @@ def main():
             time.sleep(1)
             onSuccessExercise()
 
-        #winning condition
         if diff == 49:
             cv2.putText(img, "Time up, u fail !!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if diff == 50:
@@ -111,14 +106,14 @@ def main():
             break
 
         #ExercisePicture
-        imgPic = cv2.imread('ExercisePic/1CervicalSpineLateralFlexion.jpg', -1)
+        imgPic = cv2.imread('ExercisePic/2MiddleScaleneStretch.jpg', -1)
         #ExerciseName
-        cv2.putText(img, f'CervicalSpine', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
-        cv2.putText(img, f'SpineLateralFlexion', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'Middle Scalene', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'Stretch', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         #mergeImage
         added_image = cv2.addWeighted(img[150:250, 150:250, :], 0.2, imgPic[0:100, 0:100, :], 1 - 0.4, 0)
         img[150:250, 150:250] = added_image
-        cv2.imshow('CervicalSpineLateralFlexion', img)
+        cv2.imshow('MiddleScaleneStretch', img)
 
 
         k = cv2.waitKey(1)
@@ -131,8 +126,7 @@ def runExercise():
     t2 = Thread(target=main)
     t1.start()  # Calls first function
     t2.start()  # Calls second function to run at same time
-    print('hello wlc Exercise1')
-
+    print('hello wlc Exercise2')
 #testmodule if u dont run at main menu
 if __name__ == "__main__":
     runExercise()

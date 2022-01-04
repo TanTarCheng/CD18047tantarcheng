@@ -1,11 +1,11 @@
 import pygame
 import pygame_menu
-import ExerciseTwo as E1
-import ExerciseThree as E2
-import ExerciseFour as E3
-import ExerciseFFive as E4
-import ExerciseSix as E5
-import ExerciseSeven as E6
+import ExerciseOne as E1
+import ExerciseTwo as E2
+import ExerciseThree as E3
+import ExerciseFour as E4
+import ExerciseFive as E5
+import ExerciseSix as E6
 
 pygame.init()
 # Constants and global variables
