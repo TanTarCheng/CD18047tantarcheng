@@ -29,10 +29,10 @@ def countdown():
             break
 
 
-
 def onSuccessExercise():
     #get next Exercise reference/ direct import direct
     E2.runExercise()
+
 
 def set_totalCount(difficulty):
     global totalCount
