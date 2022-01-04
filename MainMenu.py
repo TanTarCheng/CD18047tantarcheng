@@ -38,17 +38,13 @@ def set_Module(module, value):
 
 
 def start_the_game():
+
     if moduleSet == 1:
         E1.runExercise()
-        E2.runExercise()
-        E3.runExercise()
+
     elif moduleSet == 2:
         E1.runExercise()
-        E2.runExercise()
-        E3.runExercise()
-        E4.runExercise()
-        E5.runExercise()
-        E6.runExercise()
+
 
 # Create menus: Main menu
 mytheme = pygame_menu.themes.THEME_BLUE.copy()

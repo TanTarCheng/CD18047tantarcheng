@@ -117,6 +117,7 @@ def runExercise():
     t2 = Thread(target=main)
     t1.start()  # Calls first function
     t2.start()  # Calls second function to run at same time
+    print('hello wlc Exercise3')
 
 #testmodule if u dont run at main menu
 if __name__ == "__main__":

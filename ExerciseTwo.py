@@ -5,6 +5,7 @@ import PoseModule as pm
 import time
 from datetime import datetime
 from threading import Thread
+import ExerciseThree as E3
 
 #up &down head
 cap= cv2.VideoCapture(0)
@@ -13,6 +14,7 @@ count = 0
 dir = 0
 totalCount = 6
 diff = 0
+exercise_complete = False
 
 
 def countdown():
@@ -20,11 +22,17 @@ def countdown():
     duration = 50
     start_time = datetime.now()
     diff = (datetime.now() - start_time).seconds  # converting into seconds
-    while (diff <= duration):
+    while (diff <= duration) and (not exercise_complete):
         diff = (datetime.now() - start_time).seconds
         #print(str(diff))
-        if diff == 50:
+        if diff >= 50:
             break
+
+
+
+def onSuccessExercise():
+    #get next Exercise reference/ direct import direct
+    E3.runExercise()
 
 def set_totalCount(difficulty):
     global totalCount
@@ -85,11 +93,17 @@ def main():
         img = cv2.flip(img, 1)
         img = detector.findPose(img, False)
         calculate_post(img)
+
+        global exercise_complete
+        #each time count 1
         if totalCount == 0.5:
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
+            exercise_complete = True
             time.sleep(1)
-            break
+            onSuccessExercise()
+
+        #winning condition
         if diff == 49:
             cv2.putText(img, "Time up, u fail !!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if diff == 50:
@@ -117,6 +131,7 @@ def runExercise():
     t2 = Thread(target=main)
     t1.start()  # Calls first function
     t2.start()  # Calls second function to run at same time
+    print('hello wlc Exercise1')
 
 #testmodule if u dont run at main menu
 if __name__ == "__main__":
