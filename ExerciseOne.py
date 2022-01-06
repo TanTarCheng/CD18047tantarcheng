@@ -7,16 +7,18 @@ from datetime import datetime
 from threading import Thread
 import ExerciseTwo as E2
 
-#up &down head
+#camera capture
 cap= cv2.VideoCapture(0)
+#posemodule item
 detector = pm.poseDetector()
+#variable
 count = 0
 dir = 0
 totalCount = 6
 diff = 0
 exercise_complete = False
 
-
+#challenge countdown
 def countdown():
     global diff
     duration = 50
@@ -28,12 +30,11 @@ def countdown():
         if diff >= 50:
             break
 
-
+#get next Exercise reference/ go to next exercise
 def onSuccessExercise():
-    #get next Exercise reference/ direct import direct
     E2.runExercise()
 
-
+#get total count from main menu
 def set_totalCount(difficulty):
     global totalCount
     totalCount = difficulty
@@ -43,6 +44,7 @@ def calculate_post(img):
     global count
     global totalCount
     global dir
+
     lmlist = detector.findPosition(img, False)
 
     if len(lmlist) != 0:
@@ -54,14 +56,18 @@ def calculate_post(img):
 
         # check for the curls
         color = (255, 50, 0)
+        #percent bar reach 100
         if per == 100:
             color = (0, 255, 0)
+            #count direction
             if dir == 0:
                 count += 0.5
                 totalCount -= 0.5
                 dir = 1
+        #percent bar reach 0
         if per == 0:
             color = (0, 255, 0)
+            # count direction
             if dir == 1:
                 count += 0.5
                 totalCount -= 0.5
@@ -70,18 +76,16 @@ def calculate_post(img):
 
 
 def display_data(img, color, per, bar):
-
-    # Draw bar
+    #draw bar and inside bar flow
     cv2.rectangle(img, (1190, 100), (1178, 650), color, 3)
     cv2.rectangle(img, (1190, int(bar)), (1178, 650), color, cv2.FILLED)
+    #show percentage
     cv2.putText(img, f'{int(per)}%', (1150, 75), cv2.FONT_HERSHEY_PLAIN, 3, color, 4)
 
-    # Draw count
-    #cv2.rectangle(img, (0, 550), (300, 720), (0, 255, 0), cv2.FILLED)
+    # show how many repit
     cv2.putText(img, f'{str(int(count))} Repitition', (26, 680), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 5)
-    # show the total number
+    # show the total count number
     cv2.putText(img, f'{int(totalCount)} left', (26, 620), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 5)
-
     #display timer text
     cv2.putText(img, (f"{diff}/50sec"), (26, 560), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 4, cv2.LINE_AA)
 
@@ -97,6 +101,7 @@ def main():
         global exercise_complete
         #each time count 1
         if totalCount == 0.5:
+            #
             cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
             exercise_complete = True
