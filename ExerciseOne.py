@@ -39,7 +39,7 @@ def set_totalCount(difficulty):
     global totalCount
     totalCount = difficulty
 
-
+#calculate each action player do
 def calculate_post(img):
     global count
     global totalCount
@@ -74,7 +74,7 @@ def calculate_post(img):
                 dir = 0
         display_data(img, color, per, bar)
 
-
+#display the information
 def display_data(img, color, per, bar):
     #draw bar and inside bar flow
     cv2.rectangle(img, (1190, 100), (1178, 650), color, 3)
@@ -92,6 +92,7 @@ def display_data(img, color, per, bar):
 def main():
 
     while True:
+
         success, img = cap.read()
         img = cv2.resize(img, (1280, 720))
         img = cv2.flip(img, 1)
@@ -99,38 +100,44 @@ def main():
         calculate_post(img)
 
         global exercise_complete
-        #each time count 1
+
+        #set end condition if total count below 1
         if totalCount == 0.5:
-            #
-            cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
+            #print complete
+            cv2.putText(img, f'Completed in {diff} second', (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if totalCount == 0:
+            #check run complete or not
             exercise_complete = True
+            #wait 1 sec
             time.sleep(1)
+            #run next exercise
             onSuccessExercise()
 
-        #winning condition
+        # lose condition
         if diff == 49:
             cv2.putText(img, "Time up, u fail !!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
         if diff == 50:
             time.sleep(1)
+            #direct break the game
             break
 
-        #ExercisePicture
+        #show Exercise Picture
         imgPic = cv2.imread('ExercisePic/1CervicalSpineLateralFlexion.jpg', -1)
-        #ExerciseName
+        #show ExerciseName
         cv2.putText(img, f'CervicalSpine', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         cv2.putText(img, f'SpineLateralFlexion', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
-        #mergeImage
+        #merge exercise picture and camare into 1 Image
         added_image = cv2.addWeighted(img[150:250, 150:250, :], 0.2, imgPic[0:100, 0:100, :], 1 - 0.4, 0)
         img[150:250, 150:250] = added_image
+        #naming the window as CervicalSpineLateralFlexion
         cv2.imshow('CervicalSpineLateralFlexion', img)
 
-
+        #set break key  = q
         k = cv2.waitKey(1)
         if k & 0xFF == ord("q"):  # quit all
             break
 
-#run from main menu
+#run from main menu using this code
 def runExercise():
     t1 = Thread(target=countdown)
     t2 = Thread(target=main)
@@ -138,6 +145,6 @@ def runExercise():
     t2.start()  # Calls second function to run at same time
     print('hello wlc Exercise1')
 
-#testmodule if u dont run at main menu
+# direct run exersice
 if __name__ == "__main__":
     runExercise()
