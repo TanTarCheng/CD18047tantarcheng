@@ -39,8 +39,11 @@ def set_Module(module, value):
 
 def start_the_game():
 
-    E1.runExercise()
+    if moduleSet == 1:
+        E4.runExercise()
 
+    elif moduleSet == 2:
+        E1.runExercise()
 
 
 # Create menus: Main menu
