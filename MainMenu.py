@@ -11,15 +11,13 @@ pygame.init()
 # Constants and global variables
 WIDTH, HEIGHT = 1260, 960
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
 #setLv_dificulty
 easyCount = 6
 hardCount = 11
-
+#default module settinh
 moduleSet = 1
-
 # Load image
-backgroundImg = 'ExercisePic/upper-back-pain.png'
+backgroundImg = 'ExercisePic/backpainbackground2.jpg'
 
 #Event handeling
 
@@ -35,16 +33,13 @@ def set_Module(module, value):
     global  moduleSet
     moduleSet = value
 
-
-
 def start_the_game():
-
     if moduleSet == 1:
         E4.runExercise()
-
     elif moduleSet == 2:
         E1.runExercise()
 
+font = pygame_menu.font.FONT_8BIT
 
 # Create menus: Main menu
 mytheme = pygame_menu.themes.THEME_BLUE.copy()

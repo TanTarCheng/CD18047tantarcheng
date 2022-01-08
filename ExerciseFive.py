@@ -94,7 +94,7 @@ def main():
         global exercise_complete
         # each time count 1
         if totalCount == 0.5:
-            cv2.putText(img, " Completed!!!", (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
+            cv2.putText(img, f'Completed in {diff} second', (360, 220), cv2.FONT_HERSHEY_PLAIN, 3, (255, 255, 0), 5)
         if totalCount == 0:
             exercise_complete = True
             time.sleep(1)

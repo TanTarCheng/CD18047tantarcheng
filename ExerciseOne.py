@@ -104,7 +104,7 @@ def main():
         #set end condition if total count below 1
         if totalCount == 0.5:
             #print complete
-            cv2.putText(img, f'Completed in {diff} second', (360, 220), cv2.FONT_HERSHEY_PLAIN, 5, (255, 255, 0), 5)
+            cv2.putText(img, f'Completed in {diff} second', (360, 220), cv2.FONT_HERSHEY_PLAIN, 3, (255, 255, 0), 5)
         if totalCount == 0:
             #check run complete or not
             exercise_complete = True
@@ -125,7 +125,7 @@ def main():
         imgPic = cv2.imread('ExercisePic/1CervicalSpineLateralFlexion.jpg', -1)
         #show ExerciseName
         cv2.putText(img, f'CervicalSpine', (10, 80), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
-        cv2.putText(img, f'SpineLateralFlexion', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
+        cv2.putText(img, f'LateralFlexion', (10, 120), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2)
         #merge exercise picture and camare into 1 Image
         added_image = cv2.addWeighted(img[150:250, 150:250, :], 0.2, imgPic[0:100, 0:100, :], 1 - 0.4, 0)
         img[150:250, 150:250] = added_image
